@@ -6,6 +6,7 @@ from turtlesim.srv import SetPen
 
 #def pose_callback(msg: Pose):
  #   rospy.loginfo(str(msg.x))
+ #   use this if you want to subsribe to turtle's pose
 
  
 def call_set_pen_service(r, g, b, width, off):
@@ -49,7 +50,8 @@ if __name__ == '__main__':
         elif g == 255 or (g != 0 and b != 0):
            g -= 1
            b += 1
-
+        
+        #set pen color to rainbow trail
         call_set_pen_service(r,g,b,4,0)
 
 
