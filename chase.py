@@ -48,10 +48,6 @@ class catcher:
                 if float((dx) / math.sqrt(dx * dx + dy * dy) * math.sin(-self.current_angle) +  (dy) /math.sqrt(dx * dx + dy * dy) * math.cos(-self.current_angle) < 0.0):
                     error_theta *= -1.0
                 
-            #rospy.loginfo("error: " + str(error_theta))
-            #rospy.loginfo("dx: " + str(dx) + ", dy: " + str(dy))
-                
-
             msg = Twist()
             msg.angular.z = kp * error_theta
             msg.linear.x = 1
@@ -66,17 +62,10 @@ class catcher:
         self.current_x = msg.x
         self.current_y = msg.y
         self.current_angle = msg.theta
-        #rospy.loginfo("my: (" + str(self.current_x) + "," + str(self.current_y) + ")")
-
 
     def target_pose_callback(self, msg: Pose):
         self.target_x = msg.x
-        self.target_y = msg.y
-        #rospy.loginfo("my: (" + str(self.target_x) + "," + str(self.target_y) + ")")
-        
-        
-
-
+        self.target_y = msg.y        
  
     def call_set_pen_service(self, r, g, b, width, off):
         try:
