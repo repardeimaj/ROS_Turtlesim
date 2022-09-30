@@ -41,12 +41,14 @@ class catcher:
             dy = float(self.target_y - self.current_y)
 
             kp = 1
-
-            error_theta = 0.0
+            
+            
+            error_theta = float(0.0)
             if math.sqrt(dx*dx + dy*dy) != 0.0:
-                error_theta = float(math.acos((dx) /math.sqrt(dx * dx + dy * dy) * float(math.cos(-self.current_angle)) +  (dy) / math.sqrt(dx * dx + dy * dy) * math.sin(-self.current_angle)))
-                if float((dx) / math.sqrt(dx * dx + dy * dy) * math.sin(-self.current_angle) +  (dy) /math.sqrt(dx * dx + dy * dy) * math.cos(-self.current_angle) < 0.0):
+                error_theta = float(math.acos((dx) / math.sqrt(dx * dx + dy * dy) * float(math.cos(self.current_angle)) +  (dy) / math.sqrt(dx * dx + dy * dy) * math.sin(self.current_angle)))
+                if float((dy) /math.sqrt(dx * dx + dy * dy) * math.cos(self.current_angle) - (dx) / math.sqrt(dx * dx + dy * dy) * math.sin(self.current_angle)) < 0.0:
                     error_theta *= -1.0
+
                 
             msg = Twist()
             msg.angular.z = kp * error_theta
